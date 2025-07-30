@@ -1,42 +1,43 @@
-#root {
-  max-width: 1280px;
+.app-container {
+  max-width: 500px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  font-family: sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.input-section {
+  margin: 20px 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-section input {
+  padding: 8px;
+  width: 70%;
+  margin-right: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input-section button {
+  padding: 8px 16px;
 }
 
-.card {
-  padding: 2em;
+.tasklist-section ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.read-the-docs {
-  color: #888;
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.task-text {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.empty-message {
+  color: #666;
+  font-style: italic;
 }

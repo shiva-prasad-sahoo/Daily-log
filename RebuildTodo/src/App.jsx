@@ -15,56 +15,61 @@ function App() {
     };
 
     setTasklist((prev) => [newTask, ...prev]);
-
     setTask("");
   }
 
   function handleDelete(id) {
-    setTasklist((prev) =>
-      prev.filter((t) => {
-        return t.id != id;
-      })
-    );
+    setTasklist((prev) => prev.filter((t) => t.id !== id));
   }
 
   function toggleComplete(id) {
     setTasklist((prev) =>
-      prev.map((t) => {
-        return t.id === id ? { ...t, completed: !t.completed } : t;
-      })
+      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
     );
   }
-  return (
-    <>
-      {/**input part */}
-      <div>
-        <h1>Manage Your Tasks</h1>
 
+  return (
+    <div className="app-container">
+      <h1>Manage Your Tasks</h1>
+
+      <div className="input-section">
         <input
           type="text"
           placeholder="Enter Your Task"
           value={task}
-          onChange={(e) => {
-            setTask(e.target.value);
-          }}
+          onChange={(e) => setTask(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
         />
         <button onClick={handleAdd}>Add</button>
       </div>
-      {/**display part */}
-      <div>
-        {tasklist.map((item) => (
-          <div key={item.id}>
-            <input
-              type="checkbox"
-              checked={item.completed}
-              onChange={() => toggleComplete(item.id)}
-            />
-            <li>{item.event}</li>
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
-          </div>
-        ))}
+
+      <div className="tasklist-section">
+        {tasklist.length === 0 ? (
+          <p className="empty-message">No tasks yet. Add one!</p>
+        ) : (
+          <ul>
+            {tasklist.map((item) => (
+              <li key={item.id} className="task-item">
+                <input
+                  type="checkbox"
+                  checked={item.completed}
+                  onChange={() => toggleComplete(item.id)}
+                />
+                <span
+                  className="task-text"
+                  style={{
+                    textDecoration: item.completed ? "line-through" : "none",
+                  }}
+                >
+                  {item.event}
+                </span>
+                <button onClick={() => handleDelete(item.id)}>Delete</button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
