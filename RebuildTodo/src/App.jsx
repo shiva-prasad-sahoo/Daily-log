@@ -1,6 +1,27 @@
 import { useState } from "react";
 import "./App.css";
 
+function TaskItem({ item, onDelete, onToggle }) {
+  return (
+    <li className="task-item">
+      <input
+        type="checkbox"
+        checked={item.completed}
+        onChange={() => onToggle(item.id)}
+      />
+      <span
+        className="task-text"
+        style={{
+          textDecoration: item.completed ? "line-through" : "none",
+        }}
+      >
+        {item.event}
+      </span>
+      <button onClick={() => onDelete(item.id)}>Delete</button>
+    </li>
+  );
+}
+
 function App() {
   const [task, setTask] = useState("");
   const [tasklist, setTasklist] = useState([]);
@@ -49,22 +70,12 @@ function App() {
         ) : (
           <ul>
             {tasklist.map((item) => (
-              <li key={item.id} className="task-item">
-                <input
-                  type="checkbox"
-                  checked={item.completed}
-                  onChange={() => toggleComplete(item.id)}
-                />
-                <span
-                  className="task-text"
-                  style={{
-                    textDecoration: item.completed ? "line-through" : "none",
-                  }}
-                >
-                  {item.event}
-                </span>
-                <button onClick={() => handleDelete(item.id)}>Delete</button>
-              </li>
+              <TaskItem
+                key={item.id}
+                item={item}
+                onDelete={handleDelete}
+                onToggle={toggleComplete}
+              />
             ))}
           </ul>
         )}
