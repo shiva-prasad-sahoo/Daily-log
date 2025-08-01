@@ -1,43 +1,35 @@
-.app-container {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: sans-serif;
-}
-
-.input-section {
-  margin: 20px 0;
-}
-
-.input-section input {
-  padding: 8px;
-  width: 70%;
-  margin-right: 8px;
-}
-
-.input-section button {
-  padding: 8px 16px;
-}
-
-.tasklist-section ul {
-  list-style-type: none;
-  padding: 0;
-}
-
 .task-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 8px 0;
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
 }
 
 .task-text {
-  flex-grow: 1;
-  text-align: left;
   margin-left: 10px;
 }
 
-.empty-message {
-  color: #666;
-  font-style: italic;
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
